@@ -13,13 +13,15 @@ export default {
   		itemcontainer
   	},
     created(){
-        
+
     }
 }
 </script>
 
 <style lang="less" scoped>
     .home_container{
-
+position: relative;
+    height: 100%;
+    width: 100%;
     }
 </style>

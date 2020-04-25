@@ -5,7 +5,12 @@
     		<span class="num_tip" v-if="fatherComponent == 'item'">题目{{itemNum}}</span>
     </header>-->
 
-    <div v-if="fatherComponent == 'home'">
+    <div
+      v-if="fatherComponent == 'home'"
+      style="position: relative;
+    height: 100%;
+    width: 100%;"
+    >
       <div class="swj_home">
         <div class="swj_home_title"></div>
         <div class="swj_home_jx"></div>
@@ -13,67 +18,91 @@
         <div class="swj_home_rightcloud"></div>
         <div class="swj_home_city"></div>
 
-        <div class="swj_home_btn swj_home_intro">活动介绍</div>
+        <div class="swj_home_btn swj_home_intro" @click="IntroShow=true">活动介绍</div>
         <router-link class="swj_home_btn swj_home_test" to="item">开始测试</router-link>
       </div>
-      <div class="swj_intro">
+
+      <div class="swj_intro" v-show="IntroShow">
+        <div class="swj_intro_block"></div>
+        <div class="swj_intro_title"></div>
+        <div class="swj_intro_jx"></div>
+        <div class="swj_intro_city"></div>
         <div class="swj_intro_panel">
-          <div class="swj_intro_panelclose"></div>
+          <p>我们赖以生存的地球是一个非常美丽的蓝色星球，其中仅有2.53%是淡水。而所有淡水资源中，可为人类所获取和使用的不足1%。这样一来是什么概念呢？假设地球上总水量有2台洗衣机（50L）那么多，淡水只有大概2.5L可乐瓶那么多，而能被我们获得和使用的仅有。</p>
         </div>
+        <div class="swj_intro_panelclose" @click="IntroShow=false"></div>
       </div>
     </div>
 
-    <div v-if="fatherComponent == 'item'">
-      <div class="item_back item_container_style">
-        <div class="item_list_container" v-if="itemDetail.length > 0">
-          <header class="item_title">{{ itemDetail[itemNum - 1].topic_name }}</header>
-          <ul>
-            <li
-              v-for="(item, index) in itemDetail[itemNum - 1].topic_answer"
-              @click="
+    <div
+      v-if="fatherComponent == 'item'"
+      style="position: relative;
+    height: 100%;
+    width: 100%;"
+    >
+      <div class="swj_form swj_intro">
+        <!-- <div class="swj_intro_block"></div> -->
+        <div class="swj_intro_title"></div>
+        <div class="swj_intro_jx"></div>
+        <div class="swj_intro_city"></div>
+        <div class="swj_intro_panel">
+          <div class="swj_form_container" v-if="itemDetail.length > 0">
+            <header class="swj_form_title">{{ itemDetail[itemNum - 1].active_title }}</header>
+            <ul>
+              <li
+                v-for="(item, index) in itemDetail[itemNum - 1].topic_answer"
+                @click="
                 choosed(index, item.topic_answer_id, item.is_standard_answer)
               "
-              class="item_list"
-            >
-              <span
-                class="option_style"
-                v-bind:class="{
+                class="item_list"
+              >
+                <span
+                  class="option_style"
+                  v-bind:class="{
                   has_choosed: choosedNum == index,
                   has_true: Trueindex == index
                 }"
-              >
-                <span class="option_style_symbol">
-                  {{
-                  chooseType(item.is_standard_answer)
-                  }}
-                </span>
+                >
+                  <span class="option_style_symbol">
+                    {{
+                    chooseType(item.is_standard_answer)
+                    }}
+                  </span>
 
-                <!-- <img :src="chooseType(item.is_standard_answer)" /> -->
-              </span>
-              <!-- <span class="option_style" v-bind:class="{'has_choosed':choosedNum==index}">{{chooseType(index)}}</span> -->
-              <span class="option_detail">{{ item.answer_name }}</span>
-            </li>
-          </ul>
-          <div v-if="itemNum === itemDetail.length" class="item_list_form">
+                  <!-- <img :src="chooseType(item.is_standard_answer)" /> -->
+                </span>
+                <!-- <span class="option_style" v-bind:class="{'has_choosed':choosedNum==index}">{{chooseType(index)}}</span> -->
+                <span class="option_detail">{{ item.answer_name }}</span>
+              </li>
+            </ul>
+          <div v-if="itemNum === itemDetail.length" class="item_list_form swj_form_scoreform">
             <form action>
-              <div>
-                <span>答卷人</span>
+              <div class="swj_form_scoreform-li">
+                <span>答 卷 人        &nbsp:</span>
                 <input type="text" v-model="Form.FormName" />
               </div>
-              <div>
-                <span>联系方式</span>
+              <div class="swj_form_scoreform-li">
+                <span>联系方式 :</span>
                 <input type="text" v-model="Form.FormNum" />
               </div>
-              <div>
-                <span>邮寄地址</span>
-                <input type="text" v-model="Form.FormAddress" />
+              <div class="swj_form_scoreform-li">
+                <span>邮寄地址 :</span>
+                <!-- <input type="text" v-model="Form.FormAddress" style="height:2rem;" /> -->
+                <textarea name="" id="" cols="30" rows="10" v-model="Form.FormAddress" style="height:2rem;"></textarea>
               </div>
             </form>
           </div>
+          </div>
+
         </div>
+        <div
+          class="swj_home_btn swj_form_btn"
+          @click="nextItem"
+          v-if="itemNum < itemDetail.length"
+        >下一题</div>
+
+        <span class="swj_home_btn swj_form_btn" v-else @click="submitAnswer" style="padding: 0 1.2rem;">提交答案</span>
       </div>
-      <span class="next_item button_style" @click="nextItem" v-if="itemNum < itemDetail.length"></span>
-      <span class="submit_item button_style" v-else @click="submitAnswer"></span>
     </div>
   </section>
 </template>
@@ -88,6 +117,7 @@ export default {
   name: "itemcontainer",
   data() {
     return {
+      IntroShow: false,
       itemId: null, //题目ID
       choosedNum: null, //选中答案索引
       choosedId: null, //选中答案id
@@ -114,6 +144,12 @@ export default {
   ]),
   methods: {
     ...mapActions(["addNum", "initializeData"]),
+    // IntroShowClick(){
+    //   this.IntroShow=true;
+    // },
+    // IntroHideClick(){
+    //   this.IntroShow=false;
+    // },
     //点击下一题
     nextItem() {
       if (this.choosedNum !== null) {
@@ -186,53 +222,18 @@ export default {
             // clearInterval(this.timer);
             this.computedScore();
             this.UploadForm();
-          } else if (this.answerid.length = this.itemDetail.length) {
+          } else if ((this.answerid.length = this.itemDetail.length)) {
             this.computedScore();
             this.UploadForm();
           } else {
             router.push("score");
           }
         }
-
-        // if (this.answerid.length < this.itemDetail.length) {
-        //   this.addNum(this.choosedId);
-        //   if (
-        //     this.Form.FormName == "" ||
-        //     this.Form.FormNum == "" ||
-        //     this.Form.FormAddress == ""
-        //   ) {
-        //     alert("请填写表格");
-        //   } else if (!reg.test(this.Form.FormNum)) {
-        //     alert("手机格式错误");
-        //   } else {
-        //     clearInterval(this.timer);
-        //     this.computedScore();
-        //     this.UploadForm();
-        //   }
-        // } else if ((this.answerid.length = this.itemDetail.length)) {
-        //   if (
-        //     this.Form.FormName == "" ||
-        //     this.Form.FormNum == "" ||
-        //     this.Form.FormAddress == ""
-        //   ) {
-        //     alert("请填写表格");
-        //   } else if (!reg.test(this.Form.FormNum)) {
-        //     alert("手机格式错误");
-        //   } else {
-        //     clearInterval(this.timer);
-        //     this.computedScore();
-        //     this.UploadForm();
-        //   }
-        // } else {
-        //   this.$router.push("/");
-        // }
-
-        // alert(this.score);
       } else {
         alert("您还没有选择答案哦");
       }
     },
-    BackHome(){
+    BackHome() {
       this.$router.push("score");
     },
     UploadForm() {
@@ -250,7 +251,7 @@ export default {
       fromData.append("Score", this.score);
       axios
         .post("http://dev.odb.sh.cn/SHSWJHSYKTZXDT/Home/Information", fromData)
-        .then(response=>{
+        .then(response => {
           console.log(response);
           if (response.data.Status == 300) {
             alert(response.data.Msg);
@@ -258,7 +259,6 @@ export default {
             // router.push("score");
             alert(response.data.Msg);
             this.$router.push("score");
-
           }
         })
         //获取失败
@@ -361,33 +361,39 @@ export default {
   line-height: 0.7rem;
 }
 .item_list {
-  font-size: 0;
-  margin-top: 0.4rem;
-  width: 10rem;
+font-size: 0;
+    margin-top: 0.4rem;
+    width: 8.2rem;
+    overflow: hidden;
   span {
-    display: inline-block;
-    font-size: 0.6rem;
-    color: #00e;
+    display: block;
+    font-size: 0.36rem;
+    color: #1a568e;
     vertical-align: middle;
   }
   .option_style {
-    height: 0.725rem;
-    width: 0.725rem;
-    border: 1px solid #fff;
+    float: left;
+    height: 0.4rem;
+    width: 0.4rem;
+    border: 1px solid #000;
     border-radius: 50%;
-    line-height: 0.725rem;
+    line-height: 0.4rem;
     text-align: center;
     margin-right: 0.3rem;
     font-size: 0.5rem;
     font-family: "Arial";
+    margin-top: 0.05rem;
     &.has_choosed {
       span {
         display: block;
+        font-size: 0.45rem;
       }
     }
     &.has_true {
       span {
         display: block;
+        color: #50ae00;
+        font-size: 0.7rem;
       }
     }
     span {
@@ -395,13 +401,13 @@ export default {
     }
   }
   .has_choosed {
-    background-color: #ffd400;
-    color: #575757;
-    border-color: #ffd400;
+    // background-color: #ffd400;
+    // color: #575757;
+    // border-color: #ffd400;
   }
   .option_detail {
     width: 7.5rem;
-    padding-top: 0.11rem;
+    float: left;
   }
 }
 </style>

@@ -1,26 +1,23 @@
 <template>
+
   <div>
-    <div class="your_scores_container">
-      <header class="your_scores">
-        <span class="score_num">{{ score }}</span>
-        <span class="fenshu">分！</span>
-      </header>
-      <div class="result_tip">{{ scoreTips }}</div>
-    </div>
-    <div class="share_button" @click="showCover"></div>
-    <div class="share_code">
-      <header class="share_header">关注葡萄之家，获取答案。</header>
-      <img
-        src="../../images/4-4.png"
-        height="212"
-        width="212"
-        class="code_img"
-      />
-    </div>
-    <div class="share_cover" v-show="showHide" @click="showCover">
-      <img src="../../images/5-2.png" class="share_img" />
-    </div>
+<div class="swj_form swj_intro">
+          <div class="swj_intro_title"></div>
+        <div class="swj_intro_jx"></div>
+        <div class="swj_intro_city swj_score_city"></div>
+        <div class="swj_score_panel"></div>
+        <div class="swj_score_scorenum">
+          {{ score }}
+        </div>
+        <div class="swj_score_scoretips">{{ scoreTips }}</div>
+</div>
+
+
+
+
+
   </div>
+
 </template>
 
 <script>
@@ -34,11 +31,11 @@ export default {
       scoreTips: "", //分数提示
       rightAnswer: [2, 7, 12, 13, 18], //正确答案
       scoreTipsArr: [
-        "你说，是不是把知识都还给小学老师了？",
-        "还不错，但还需要继续加油哦！",
-        "不要嘚瑟还有进步的空间！",
-        "智商离爆表只差一步了！",
-        "你也太聪明啦，葡萄之家欢迎你！"
+        "还要继续加油哦！",
+        "棒棒哒！",
+        "你太优秀了！",
+        "你太优秀了！",
+        "你太优秀了！"
       ]
     };
   },

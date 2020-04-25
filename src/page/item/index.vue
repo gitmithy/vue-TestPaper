@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div style="position: relative;
+    height: 100%;
+    width: 100%;">
     <itemcontainer father-component="item"></itemcontainer>
   </div>
 </template>
