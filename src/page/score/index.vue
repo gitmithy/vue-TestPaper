@@ -33,8 +33,6 @@ export default {
       scoreTipsArr: [
         "还要继续加油哦！",
         "棒棒哒！",
-        "你太优秀了！",
-        "你太优秀了！",
         "你太优秀了！"
       ]
     };
@@ -68,6 +66,15 @@ export default {
     getScoreTip: function() {
       let index = Math.ceil(this.score / 20) - 1;
       this.scoreTips = this.scoreTipsArr[index];
+      if(this.score<=60){
+        this.scoreTips = this.scoreTipsArr[0];
+      }
+      if(this.score>60&&this.score<80){
+        this.scoreTips = this.scoreTipsArr[1];
+      }
+      if(this.score>=80){
+        this.scoreTips = this.scoreTipsArr[2];
+      }
     }
     // AxiosTest:function(){
     //   console.log(this.score)

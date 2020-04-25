@@ -20,6 +20,7 @@
 
         <div class="swj_home_btn swj_home_intro" @click="IntroShow=true">活动介绍</div>
         <router-link class="swj_home_btn swj_home_test" to="item">开始测试</router-link>
+        <div class="swj_home_author">东方网政务中心设计制作</div>
       </div>
 
       <div class="swj_intro" v-show="IntroShow">
