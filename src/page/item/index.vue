@@ -1,6 +1,6 @@
 <template>
   <div style="position: relative;
-    height: 100%;
+    height:20rem;
     width: 100%;">
     <itemcontainer father-component="item"></itemcontainer>
   </div>

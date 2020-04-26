@@ -8,7 +8,7 @@
     <div
       v-if="fatherComponent == 'home'"
       style="position: relative;
-    height: 100%;
+    height: 20rem;
     width: 100%;"
     >
       <div class="swj_home">
@@ -38,7 +38,7 @@
     <div
       v-if="fatherComponent == 'item'"
       style="position: relative;
-    height: 100%;
+    height: 20rem;
     width: 100%;"
     >
       <div class="swj_form swj_intro">
@@ -68,19 +68,25 @@
                     {{
                     chooseType(item.is_standard_answer)
                     }}
+                    <!-- <img :src="chooseType(item.is_standard_answer)" /> -->
                   </span>
 
                   <!-- <img :src="chooseType(item.is_standard_answer)" /> -->
                 </span>
                 <!-- <span class="option_style" v-bind:class="{'has_choosed':choosedNum==index}">{{chooseType(index)}}</span> -->
-                <span class="option_detail">{{ item.answer_name }}</span>
+                <span class="option_detail" v-bind:class="{has_true: Trueindex == index }"
+                 >{{ item.answer_name }}</span>
               </li>
             </ul>
           <div v-if="itemNum === itemDetail.length" class="item_list_form swj_form_scoreform">
-            <form action>
+            <!-- @focusout="inputBlur" -->
+            <form action
+
+
+            >
               <div class="swj_form_scoreform-li">
                 <span>答 卷 人        &nbsp:</span>
-                <input type="text" v-model="Form.FormName" />
+                <input type="text" v-model="Form.FormName"  />
               </div>
               <div class="swj_form_scoreform-li">
                 <span>联系方式 :</span>
@@ -89,7 +95,7 @@
               <div class="swj_form_scoreform-li">
                 <span>邮寄地址 :</span>
                 <!-- <input type="text" v-model="Form.FormAddress" style="height:2rem;" /> -->
-                <textarea name="" id="" cols="30" rows="10" v-model="Form.FormAddress" style="height:2rem;"></textarea>
+                <textarea name="" id="" cols="30" rows="10" v-model="Form.FormAddress" style="height:2rem;" ></textarea>
               </div>
             </form>
           </div>
@@ -127,7 +133,7 @@ export default {
       HascomputedScore: false,
       Trueindex: null,
       score: 0, //分数
-      rightAnswer: [2, 7, 12, 13, 18], //正确答案
+      rightAnswer: [1, 8, 9, 16, 17,24,28,29,34,37,41,48,52,54,60,62,65,72,73,78], //正确答案
       Form: {
         FormName: "",
         FormNum: "",
@@ -163,13 +169,25 @@ export default {
         alert("您还没有选择答案哦");
       }
     },
+
+    inputBlur(e) {
+    // 判断触发事件的目标元素是否是input输入框，关注输入框的行为。
+        if (e && e.target && e.target.tagName && e.target.tagName.toLowerCase() === 'input') {
+          window.scrollTo(0,0);
+        }
+        if (e && e.target && e.target.tagName && e.target.tagName.toLowerCase() === 'textarea') {
+          window.scrollTo(0,0);
+        }
+    },
+
+
     //索引0-3对应答案A-B
     chooseType: type => {
       switch (type) {
         case 0:
-          return "❌";
+          return "✕";
         case 1:
-          return "✔";
+          return "✓";
       }
     },
     // TrueFalse
@@ -198,7 +216,7 @@ export default {
       if (!this.HascomputedScore) {
         this.answerid.forEach((item, index) => {
           if (item == this.rightAnswer[index]) {
-            this.score += 20;
+            this.score += 5;
           }
         });
         this.HascomputedScore = true;
@@ -362,13 +380,13 @@ export default {
   line-height: 0.7rem;
 }
 .item_list {
-font-size: 0;
-    margin-top: 0.4rem;
+    font-size: 0;
+    margin-top: .25rem;
     width: 8.2rem;
     overflow: hidden;
   span {
     display: block;
-    font-size: 0.36rem;
+    font-size: 0.48rem;
     color: #1a568e;
     vertical-align: middle;
   }
@@ -387,14 +405,15 @@ font-size: 0;
     &.has_choosed {
       span {
         display: block;
-        font-size: 0.45rem;
+        font-size: 0.6rem;
+        color: #c12030;
       }
     }
     &.has_true {
       span {
         display: block;
         color: #50ae00;
-        font-size: 0.7rem;
+        font-size: 0.6rem;
       }
     }
     span {
@@ -409,6 +428,11 @@ font-size: 0;
   .option_detail {
     width: 7.5rem;
     float: left;
+    line-height: .7rem;
+    &.has_true{
+      font-weight: bold;
+      color: #50ae00;
+    }
   }
 }
 </style>

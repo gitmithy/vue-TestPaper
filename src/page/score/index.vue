@@ -9,7 +9,12 @@
         <div class="swj_score_scorenum">
           {{ score }}
         </div>
-        <div class="swj_score_scoretips">{{ scoreTips }}</div>
+        <div class="swj_score_scoretips" >
+          <!-- {{ scoreTips }} -->
+          <img src="../../images/isa.png" v-show="IsA"  class="class-a" />
+          <img src="../../images/isb.png" v-show="IsB"  class="class-b" />
+          <img src="../../images/isc.png" v-show="IsC"  class="class-c" />
+        </div>
 </div>
 
 
@@ -27,19 +32,23 @@ export default {
   data() {
     return {
       showHide: false, //是否显示提示
-      score: 0, //分数
+      score: null, //分数
       scoreTips: "", //分数提示
-      rightAnswer: [2, 7, 12, 13, 18], //正确答案
+      rightAnswer: [1, 8, 9, 16, 17,24,28,29,34,37,41,48,52,54,60,62,65,72,73,78], //正确答案
       scoreTipsArr: [
-        "还要继续加油哦！",
-        "棒棒哒！",
-        "你太优秀了！"
-      ]
+        "还要继续加油哦",
+        "棒棒哒",
+        "你太优秀了"
+      ],
+      IsA:false,
+      IsB:false,
+      IsC:false
     };
   },
   computed: mapState(["answerid"]),
   created() {
     console.log(this.answerid);
+     window.scrollTo(0,0);
     if (this.answerid.length === 0) {
       this.$router.push("/");
     } else {
@@ -47,14 +56,14 @@ export default {
       this.getScoreTip();
     }
 
-    document.body.style.backgroundImage = "url(./static/img/4-1.jpg)";
+    // document.body.style.backgroundImage = "url(./static/img/4-1.jpg)";
   },
   methods: {
     //计算分数
     computedScore() {
       this.answerid.forEach((item, index) => {
         if (item == this.rightAnswer[index]) {
-          this.score += 20;
+          this.score += 5;
         }
       });
     },
@@ -68,12 +77,15 @@ export default {
       this.scoreTips = this.scoreTipsArr[index];
       if(this.score<=60){
         this.scoreTips = this.scoreTipsArr[0];
+        this.IsC=true;
       }
       if(this.score>60&&this.score<80){
         this.scoreTips = this.scoreTipsArr[1];
+        this.IsB=true;
       }
       if(this.score>=80){
         this.scoreTips = this.scoreTipsArr[2];
+        this.IsA=true;
       }
     }
     // AxiosTest:function(){
