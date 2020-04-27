@@ -266,30 +266,30 @@ const state = {
             "type": "MORE",
             "topic_name": "题目五",
             "active_id": 1,
-            "active_title": "9.	根据《上海市污水处理费征收使用管理实施办法》，市属污水处理设施服务范围内的污水处理费，居民用水、工商业用水、行政事业用水及特种用水单价分别为____元/立方米、____元/立方米、____元/立方米及____元/立方米，应缴纳污水处理费=用水量×征收标准×0.9。",
+            "active_title": "9.	以下生活中节水不提倡的是（）。",
             "active_topic_phase": "第一周",
             "active_start_time": "1479139200",
             "active_end_time": "1482163200",
             "topic_answer": [{
                 "topic_answer_id": 33,
                 "topic_id": 21,
-                "answer_name": "A、2.34元、2.34元、1.70元、2.34元；",
+                "answer_name": "A、用节水型洗衣机、节水淋浴喷头，可达到节水30％以上 ；",
                 "is_standard_answer": 0
             }, {
                 "topic_answer_id": 34,
                 "topic_id": 21,
-                "answer_name": "B、1.70元；2.34元、2.24元、2.34元；",
-                "is_standard_answer": 1
+                "answer_name": "B、淋浴代替盆浴；",
+                "is_standard_answer": 0
             }, {
                 "topic_answer_id": 35,
                 "topic_id": 21,
-                "answer_name": "C、1.70元、2.34元、1.70元、2.34元；",
+                "answer_name": "C、能瓶装水贴上标签，喝不完的瓶装水随身带走不丢弃；",
                 "is_standard_answer": 0
             }, {
                 "topic_answer_id": 36,
                 "topic_id": 21,
-                "answer_name": "D、1.70元、2.34元、2.24元、1.70元；",
-                "is_standard_answer": 0
+                "answer_name": "D、正在淋浴下洗澡，不关水龙头去接电话；",
+                "is_standard_answer": 1
             }]
         }, {
             "topic_id": 21,
@@ -297,29 +297,29 @@ const state = {
             "type": "MORE",
             "topic_name": "题目五",
             "active_id": 1,
-            "active_title": "10.	对经测定所排放的污（废）水指标超过《污水排入城镇下水道水质标准》（ DB31/445-2009）的重点污染用户，每立方米加收____元。各区污水处理费，征收标准计费方式与本区原排水费保持一致，重点污染单位污水处理费加价标准与原加价标准保持一致。",
+            "active_title": "10.	节水型淋浴器与传统手持花洒比较，可以节约（）。",
             "active_topic_phase": "第一周",
             "active_start_time": "1479139200",
             "active_end_time": "1482163200",
             "topic_answer": [{
                 "topic_answer_id": 37,
                 "topic_id": 21,
-                "answer_name": "A、0.08；",
-                "is_standard_answer": 1
+                "answer_name": "A、10％－20％ ；",
+                "is_standard_answer": 0
             }, {
                 "topic_answer_id": 38,
                 "topic_id": 21,
-                "answer_name": "B、0.06；",
+                "answer_name": "B、20％－30％；",
                 "is_standard_answer": 0
             }, {
                 "topic_answer_id": 39,
                 "topic_id": 21,
-                "answer_name": "C、0.15；",
-                "is_standard_answer": 0
+                "answer_name": "C、30％－70％；",
+                "is_standard_answer": 1
             }, {
                 "topic_answer_id": 40,
                 "topic_id": 21,
-                "answer_name": "D、0.24；",
+                "answer_name": "D、70％－90％；",
                 "is_standard_answer": 0
             }]
         }, {
