@@ -7,9 +7,7 @@
 
     <div
       v-if="fatherComponent == 'home'"
-      style="position: relative;
-    height: 20rem;
-    width: 100%;"
+      style="position: relative; height: 20rem; width: 100%"
     >
       <div class="swj_home">
         <div class="swj_home_title"></div>
@@ -18,8 +16,12 @@
         <div class="swj_home_rightcloud"></div>
         <div class="swj_home_city"></div>
 
-        <div class="swj_home_btn swj_home_intro" @click="IntroShow=true">活动介绍</div>
-        <router-link class="swj_home_btn swj_home_test" to="item">开始测试</router-link>
+        <div class="swj_home_btn swj_home_intro" @click="IntroShow = true">
+          活动介绍
+        </div>
+        <router-link class="swj_home_btn swj_home_test" to="item"
+          >开始测试</router-link
+        >
         <div class="swj_home_author">东方网政务中心设计制作</div>
       </div>
 
@@ -29,17 +31,33 @@
         <div class="swj_intro_jx"></div>
         <div class="swj_intro_city"></div>
         <div class="swj_intro_panel">
-          <p>“走进水务海洋活动”沪水问答开始啦！参与答题就有机会得到官方出品的限定小礼物哦！快来加入我们的答题小队吧<svg t="1587954037523" style="vertical-align: middle;" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1993" width="32" height="32"><path d="M846.3104 562.304c-1.5104 2.0416-3.1872 4-5.0432 5.8496l-293.056 293.056a51.2 51.2 0 0 1-72.4032 0L185.8496 571.264a51.5328 51.5328 0 0 1-5.6384-6.688C132.48 522.2016 102.4 460.2752 102.4 391.3024c0-127.7184 103.1552-231.2576 230.4-231.2576 72.384 0 136.96 33.4976 179.2 85.888 42.24-52.3904 106.816-85.888 179.2-85.888 127.2448 0 230.4 103.5392 230.4 231.2576 0 67.7504-29.0304 128.704-75.2896 170.9952z" fill="#59AAFF" p-id="1994"></path></svg> </p>
+          <p>
+            “走进水务海洋活动”沪水问答开始啦！参与答题就有机会得到官方出品的限定小礼物哦！快来加入我们的答题小队吧<svg
+              t="1587954037523"
+              style="vertical-align: middle"
+              class="icon"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="1993"
+              width="32"
+              height="32"
+            >
+              <path
+                d="M846.3104 562.304c-1.5104 2.0416-3.1872 4-5.0432 5.8496l-293.056 293.056a51.2 51.2 0 0 1-72.4032 0L185.8496 571.264a51.5328 51.5328 0 0 1-5.6384-6.688C132.48 522.2016 102.4 460.2752 102.4 391.3024c0-127.7184 103.1552-231.2576 230.4-231.2576 72.384 0 136.96 33.4976 179.2 85.888 42.24-52.3904 106.816-85.888 179.2-85.888 127.2448 0 230.4 103.5392 230.4 231.2576 0 67.7504-29.0304 128.704-75.2896 170.9952z"
+                fill="#59AAFF"
+                p-id="1994"
+              ></path>
+            </svg>
+          </p>
         </div>
-        <div class="swj_intro_panelclose" @click="IntroShow=false"></div>
+        <div class="swj_intro_panelclose" @click="IntroShow = false"></div>
       </div>
     </div>
 
     <div
       v-if="fatherComponent == 'item'"
-      style="position: relative;
-    height: 20rem;
-    width: 100%;"
+      style="position: relative; height: 20rem; width: 100%"
     >
       <div class="swj_form swj_intro">
         <!-- <div class="swj_intro_block"></div> -->
@@ -48,67 +66,85 @@
         <div class="swj_intro_city"></div>
         <div class="swj_intro_panel">
           <div class="swj_form_container" v-if="itemDetail.length > 0">
-            <header class="swj_form_title">{{ itemDetail[itemNum - 1].active_title }}</header>
+            <header class="swj_form_title">
+              {{ itemDetail[itemNum - 1].active_title }}
+            </header>
             <ul>
               <li
+                class="item_list"
                 v-for="(item, index) in itemDetail[itemNum - 1].topic_answer"
                 @click="
-                choosed(index, item.topic_answer_id, item.is_standard_answer)
-              "
-                class="item_list"
+                  choosed(index, item.topic_answer_id, item.is_standard_answer)
+                "
+                :key="index"
               >
                 <span
                   class="option_style"
                   v-bind:class="{
-                  has_choosed: choosedNum == index,
-                  has_true: Trueindex == index
-                }"
+                    has_choosed: choosedNum == index,
+                    has_true: Trueindex == index,
+                  }"
                 >
                   <span class="option_style_symbol">
-                    {{
-                    chooseType(item.is_standard_answer)
-                    }}
+                    {{ chooseType(item.is_standard_answer) }}
                     <!-- <img :src="chooseType(item.is_standard_answer)" /> -->
                   </span>
 
                   <!-- <img :src="chooseType(item.is_standard_answer)" /> -->
                 </span>
                 <!-- <span class="option_style" v-bind:class="{'has_choosed':choosedNum==index}">{{chooseType(index)}}</span> -->
-                <span class="option_detail" v-bind:class="{has_true: Trueindex == index }"
-                 >{{ item.answer_name }}</span>
+                <span
+                  class="option_detail"
+                  v-bind:class="{ has_true: Trueindex == index }"
+                  >{{ item.answer_name }}</span
+                >
               </li>
             </ul>
-          <div v-if="itemNum === itemDetail.length" class="item_list_form swj_form_scoreform">
-            <!-- @focusout="inputBlur" -->
-            <form action
-
-
+            <div
+              v-if="itemNum === itemDetail.length"
+              class="item_list_form swj_form_scoreform"
             >
-              <div class="swj_form_scoreform-li">
-                <span>答 卷 人        &nbsp:</span>
-                <input type="text" v-model="Form.FormName"  />
-              </div>
-              <div class="swj_form_scoreform-li">
-                <span>联系方式 :</span>
-                <input type="text" v-model="Form.FormNum" />
-              </div>
-              <div class="swj_form_scoreform-li">
-                <span>邮寄地址 :</span>
-                <!-- <input type="text" v-model="Form.FormAddress" style="height:2rem;" /> -->
-                <textarea name="" id="" cols="30" rows="10" v-model="Form.FormAddress" style="height:2rem;" ></textarea>
-              </div>
-            </form>
+              <!-- @focusout="inputBlur" -->
+              <form action>
+                <div class="swj_form_scoreform-li">
+                  <span>答 卷 人 &nbsp;</span>
+                  <input type="text" v-model="Form.FormName" />
+                </div>
+                <div class="swj_form_scoreform-li">
+                  <span>联系方式 :</span>
+                  <input type="text" v-model="Form.FormNum" />
+                </div>
+                <div class="swj_form_scoreform-li">
+                  <span>邮寄地址 :</span>
+                  <!-- <input type="text" v-model="Form.FormAddress" style="height:2rem;" /> -->
+                  <textarea
+                    name=""
+                    id=""
+                    cols="30"
+                    rows="10"
+                    v-model="Form.FormAddress"
+                    style="height: 2rem"
+                  ></textarea>
+                </div>
+              </form>
+            </div>
           </div>
-          </div>
-
         </div>
         <div
           class="swj_home_btn swj_form_btn"
           @click="nextItem"
           v-if="itemNum < itemDetail.length"
-        >下一题</div>
+        >
+          下一题
+        </div>
 
-        <span class="swj_home_btn swj_form_btn" v-else @click="submitAnswer" style="padding: 0 1.2rem;">提交答案</span>
+        <span
+          class="swj_home_btn swj_form_btn"
+          v-else
+          @click="submitAnswer"
+          style="padding: 0 1.2rem"
+          >提交答案</span
+        >
       </div>
     </div>
   </section>
@@ -380,10 +416,10 @@ export default {
   line-height: 0.7rem;
 }
 .item_list {
-    font-size: 0;
-    margin-top: .25rem;
-    width: 8.2rem;
-    overflow: hidden;
+  font-size: 0;
+  margin-top: 0.25rem;
+  width: 8.2rem;
+  overflow: hidden;
   span {
     display: block;
     font-size: 0.48rem;
@@ -428,8 +464,8 @@ export default {
   .option_detail {
     width: 7.5rem;
     float: left;
-    line-height: .7rem;
-    &.has_true{
+    line-height: 0.7rem;
+    &.has_true {
       font-weight: bold;
       color: #50ae00;
     }
