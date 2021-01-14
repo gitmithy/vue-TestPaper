@@ -424,7 +424,7 @@ export default {
     display: block;
     font-size: 0.48rem;
     color: #1a568e;
-    vertical-align: middle;
+    // vertical-align: middle;
   }
   .option_style {
     float: left;
@@ -456,11 +456,11 @@ export default {
       display: none;
     }
   }
-  .has_choosed {
-    // background-color: #ffd400;
-    // color: #575757;
-    // border-color: #ffd400;
-  }
+  // .has_choosed {
+  //   // background-color: #ffd400;
+  //   // color: #575757;
+  //   // border-color: #ffd400;
+  // }
   .option_detail {
     width: 7.5rem;
     float: left;
